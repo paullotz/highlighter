@@ -66,6 +66,23 @@ function M.toggle()
   end
 end
 
+function M.search_todos()
+  local cmd = 'grep -rRnE --exclude-dir={.git,node_modules} "TODO|FIXME|NOTE" .'
+  if vim.fn.executable('rg') == 1 then
+    cmd = 'rg --vimgrep "TODO|FIXME|NOTE" .'
+  end
+
+  local output = vim.fn.system(cmd)
+  if output == "" then
+    print("No TODOs found")
+    return
+  end
+
+  local lines = vim.split(output, "\n", { trimempty = true })
+  vim.fn.setqflist({}, 'r', { title = 'TODOs', lines = lines })
+  vim.cmd('copen')
+end
+
 function M.setup()
   M.define_highlights()
 
@@ -94,6 +111,10 @@ function M.setup()
     M.add_matches()
     print('Colors updated')
   end, { desc = 'Set custom highlight colors', nargs = '*' })
+
+  vim.api.nvim_create_user_command('TodoQuickfix', function()
+    M.search_todos()
+  end, { desc = 'Populate quickfix with TODOs' })
 
   M.add_matches()
 end

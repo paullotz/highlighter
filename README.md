@@ -29,5 +29,14 @@ The plugin works automatically out of the box.
 ### Commands
 
 *   `:TodoHighlightToggle` - Enable or disable the highlighting.
-*   `:TodoHighlightSetColors <todo_color> <fixme_color> <note_color>` - Set custom hex colors for the highlights.
+*  `:TodoHighlightSetColors <todo_color> <fixme_color> <note_color>` - Set custom hex colors for the highlights.
     *   Example: `:TodoHighlightSetColors #ff0000 #00ff00 #0000ff`
+*  `:TodoQuickfix` - Populate the quickfix list with all TODOs, FIXMEs, and NOTEs in the current directory.
+
+### Keybinding Example
+
+You can bind the quickfix command to a shortcut:
+
+```lua
+vim.keymap.set('n', '<leader>tf', ':TodoQuickfix<CR>', { noremap = true, silent = true })
+```
