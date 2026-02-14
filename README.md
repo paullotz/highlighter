@@ -1,4 +1,4 @@
-# highlighter.nvim
+# highlighter
 
 A lightweight, no-nonsense Neovim plugin to highlight `TODO`, `FIXME`, and `NOTE` comments.
 
@@ -15,7 +15,7 @@ A lightweight, no-nonsense Neovim plugin to highlight `TODO`, `FIXME`, and `NOTE
 
 ```lua
 {
-  "paullotz/highlighter.nvim",
+  "paullotz/highlighter",
   config = function()
     require("highlighter").setup()
   end,
